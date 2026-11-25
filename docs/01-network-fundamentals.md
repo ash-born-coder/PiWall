@@ -18,8 +18,6 @@ The Raspberry Pi is connected to the local network through Wi-Fi.
 
 ![Network Interfaces](../images/01-network-interfaces.png)
 
-[View screenshot](../images/01-network-interfaces.png)
-
 ## 2. IP Addressing and Routing
 
 The routing table was examined to understand how packets travel within and outside the local network.
@@ -39,8 +37,6 @@ External traffic is directed through the default gateway, while local traffic ca
 
 ![Routing Table](../images/02-routing-table.png)
 
-[View screenshot](../images/02-routing-table.png)
-
 ## 3. Local Network Connectivity
 
 Communication with the home router was tested using ICMP echo requests.
@@ -51,8 +47,6 @@ This verifies that the Raspberry Pi can communicate with its default gateway.
 
 ![Gateway Connectivity](../images/03-gateway-connectivity.png)
 
-[View screenshot](../images/03-gateway-connectivity.png)
-
 ## 4. External Network Connectivity
 
 An external IP address was tested to verify internet connectivity independently of DNS resolution.
@@ -62,8 +56,6 @@ An external IP address was tested to verify internet connectivity independently 
 This helps distinguish network connectivity problems from DNS-related issues.
 
 ![External Connectivity](../images/04-external-connectivity.png)
-
-[View screenshot](../images/04-external-connectivity.png)
 
 ## 5. DNS Resolution
 
@@ -80,8 +72,6 @@ The final connectivity test used a domain name instead of an IP address.
 | DNS Resolution | Successful |
 
 ![DNS Connectivity](../images/05-dns-connectivity.png)
-
-[View screenshot](../images/05-dns-connectivity.png)
 
 ## Testing & Validation
 
