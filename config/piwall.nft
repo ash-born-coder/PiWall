@@ -1,0 +1,45 @@
+#!/usr/sbin/nft -f
+
+# PiWall - Stateful Linux Firewall
+
+# Replace the existing table to prevent duplicate rules
+destroy table inet piwall
+
+table inet piwall {
+
+    chain input {
+        type filter hook input priority filter; policy drop;
+
+        # Allow internal loopback communication
+        iifname "lo" accept
+
+        # Stateful connection tracking
+        ct state established,related accept
+        ct state invalid drop
+
+        # Allow SSH access
+        tcp dport 22 accept
+
+        # Allow IPv4 and IPv6 ICMP traffic
+        ip protocol icmp accept
+        meta l4proto ipv6-icmp accept
+
+        # Allow DHCP and mDNS on the wireless interface
+        iifname "wlan0" udp sport 67 udp dport 68 accept
+        iifname "wlan0" udp dport 5353 accept
+
+        # Rate-limited logging of remaining incoming traffic
+        limit rate 5/second burst 10 packets log prefix "PiWall DROP: "
+
+        # Count and drop remaining packets
+        counter drop
+    }
+
+    chain output {
+        type filter hook output priority filter; policy accept;
+    }
+
+    chain forward {
+        type filter hook forward priority filter; policy accept;
+    }
+}
